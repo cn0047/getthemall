@@ -14,7 +14,7 @@
   "keywords": [
     "node"
   ],
-  "author": "cn",
+  "author": "cn007b",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cn007b/getthemall/issues"
@@ -25,5 +25,8 @@
     "coveralls": "^2.13.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "node-fetch": "^1.7.1"
   }
 }
