@@ -14,7 +14,7 @@ which helps fetch data from different REST API endpoints into one request.
 ## Usage
 
 ````js
-import getthemall from 'getthemall';
+const getthemall = require('getthemall');
 
 app.use('/resources', (req, res) => {
   getthemall(req, res, (data) => {
