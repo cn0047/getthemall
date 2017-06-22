@@ -1,6 +1,4 @@
-'use strict';
-
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 /**
  * Fetches data from API.
@@ -9,10 +7,14 @@ import fetch from 'node-fetch';
  * @param {string} url Url to API endpoint.
  * @param {function} cb Callback function, which will receive data.
  */
-const fetchData = (resourceName, url, cb) => {
+const fetchData = function(resourceName, url, cb) {
   fetch(url)
-    .then(res => res.json())
-    .then(json => cb({resourceName: resourceName, data: json}))
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      cb({resourceName: resourceName, data: json});
+    })
   ;
 };
 
@@ -23,26 +25,30 @@ const fetchData = (resourceName, url, cb) => {
  * @param {object} res Response object.
  * @param {function} cb Callback function, which will receive array with all obtained data.
  */
-export default (req, res, cb) => {
+module.exports = function(req, res, cb) {
 
-  let host = req.protocol + '://' + req.get('host') + '/';
-  let promises = [];
+  var host = req.protocol + '://' + req.get('host') + '/';
+  var promises = [];
 
   // Each parameter contains endpoint URL,
   // so will use it as part of target URL.
-  for (let resourceName in req.query) {
+  for (var resourceName in req.query) {
     // Url to Api endpoint.
-    let url = host + req.query[resourceName];
-    promises.push(new Promise(resolve => {
-      fetchData(resourceName, url, data => resolve(data));
+    var url = host + req.query[resourceName];
+    promises.push(new Promise(function(resolve) {
+      fetchData(resourceName, url, function(data) {
+        resolve(data);
+      });
     }));
   }
 
-  Promise.all(promises).then(data => {
-    let result = {};
+  Promise.all(promises).then(function(data) {
+    var result = {};
     // Format data into object,
     // where key - is resource name, and value - data obtained from API.
-    data.forEach(el => result[el.resourceName] = el.data);
+    data.forEach(function(el) {
+      result[el.resourceName] = el.data;
+    });
     cb(result);
   });
 
