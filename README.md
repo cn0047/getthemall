@@ -23,7 +23,7 @@ app.use('/resources', function(req, res) {
 });
 ````
 
-You can find example of usage [here](github.com/cn007b/simplerestapi).
+You can find example of usage [here](https://github.com/cn007b/simplerestapi).
 
 ## Tests
 
