@@ -22,10 +22,9 @@ const fetchData = function(resourceName, url, cb) {
  * Performs fetch data from different endpoints simultaneously.
  *
  * @param {object} req Request object.
- * @param {object} res Response object.
  * @param {function} cb Callback function, which will receive array with all obtained data.
  */
-module.exports = function(req, res, cb) {
+module.exports = function(req, cb) {
 
   var host = req.protocol + '://' + req.get('host') + '/';
   var promises = [];
