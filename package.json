@@ -1,11 +1,11 @@
 {
   "name": "getthemall",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "description": "Simple demo package.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec",
-    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+    "test": "mocha --reporter spec --compilers js:babel-core/register",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register -R spec test/*"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,14 @@
   },
   "homepage": "https://github.com/cn007b/getthemall#readme",
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.24.1",
     "chai": "^4.0.2",
     "coveralls": "^2.13.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
-    "nock": "^9.0.13"
+    "nock": "^9.0.13",
+    "webpack": "^3.0.0"
   },
   "dependencies": {
     "node-fetch": "^1.7.1"

@@ -17,13 +17,9 @@ which helps fetch data from different REST API endpoints into one request.
 ## Usage
 
 ````js
-const getthemall = require('getthemall');
+import getthemall from "../index"
 
-app.use('/resources', function(req, res) {
-  getthemall(req, res, function (data) {
-    res.json(data);
-  });
-});
+getthemall("https://your-api-host.com/", {user1: "users/1"}, data => res.json(data))
 ````
 
 You can find example of usage [here](https://github.com/cn007b/simplerestapi).
