@@ -1,9 +1,9 @@
-import chai from "chai"
-import nock from "nock"
+import chai from "chai";
+import nock from "nock";
 
-import getthemall from "../src/index"
+import getthemall from "../src/index";
 
-const expect = chai.expect
+const expect = chai.expect;
 
 describe("#getthemall", function() {
 
@@ -12,6 +12,7 @@ describe("#getthemall", function() {
     nock("https://fake.host.com")
       .get("/users/1")
       .reply(200, '{"id": 1, "name": "James Bond"}')
+    ;
     // Stub express request.
     let req = {
       protocol: "https",
@@ -21,14 +22,14 @@ describe("#getthemall", function() {
       query: {
         usersList: "users/1"
       }
-    }
+    };
     // Perform action.
     getthemall("https://fake.host.com/", req.query, data => {
-      let actualResult = JSON.stringify(data)
-      let expectedResult = '{"usersList":{"id":1,"name":"James Bond"}}'
-      expect(actualResult).to.equal(expectedResult)
-      done()
+      let actualResult = JSON.stringify(data);
+      let expectedResult = '{"usersList":{"id":1,"name":"James Bond"}}';
+      expect(actualResult).to.equal(expectedResult);
+      done();
     })
-  })
+  });
 
-})
+});
