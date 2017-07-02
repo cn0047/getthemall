@@ -13,23 +13,16 @@ describe("#getthemall", function() {
       .get("/users/1")
       .reply(200, '{"id": 1, "name": "James Bond"}')
     ;
-    // Stub express request.
-    let req = {
-      protocol: "https",
-      get: function (key) {
-        return "fake.host.com"
-      },
-      query: {
-        usersList: "users/1"
-      }
+    let query = {
+      usersList: "users/1"
     };
     // Perform action.
-    getthemall("https://fake.host.com/", req.query, data => {
+    getthemall("https://fake.host.com/", query, data => {
       let actualResult = JSON.stringify(data);
       let expectedResult = '{"usersList":{"id":1,"name":"James Bond"}}';
       expect(actualResult).to.equal(expectedResult);
       done();
-    })
+    });
   });
 
 });

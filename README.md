@@ -22,8 +22,6 @@ import getthemall from "../index"
 getthemall("https://your-api-host.com/", {user1: "users/1"}, data => res.json(data))
 ````
 
-You can find example of usage [here](https://github.com/cn007b/simplerestapi).
-
 ## Tests
 
 `npm test`
