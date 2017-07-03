@@ -28,9 +28,13 @@ export default (host, query, cb) => {
   for (let resourceName in query) {
     // Url to REST-Api endpoint.
     let url = host + query[resourceName];
-    promises.push(new Promise(resolve => {
+    let p = new Promise(resolve => {
       fetchData(resourceName, url, data => resolve(data));
-    }));
+    }).catch(e => {
+      console.error(e);
+      return null;
+    });
+    promises.push(p);
   }
 
   Promise.all(promises).then(data => {
