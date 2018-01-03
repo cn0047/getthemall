@@ -12,7 +12,7 @@ const { checkUrl, checkQuery, checkCallback } = require('./validation');
 const fetchData = (resourceName, uri, cb) => {
   fetch(uri)
     .then(res => res.json())
-    .then(json => cb({ resourceName, data: json }))
+    .then(json => cb({ resourceName, data: json, error: undefined }))
     .catch(err => cb({ resourceName, data: undefined, error: err.message }));
 };
 
