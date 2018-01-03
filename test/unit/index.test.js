@@ -35,4 +35,19 @@ describe('#getthemall - index unit tests.', async () => {
       done();
     });
   });
+
+  it('Main test - 1 endpoint with NON-JSON response', (done) => {
+    // Mock `fetch` function.
+    nock('https://fake.host.com')
+      .get('/get/ok')
+      .reply(200, 'OK');
+    // Prepare request.
+    const query = { getOk: 'get/ok' };
+
+    // Perform action.
+    getThemAll('https://fake.host.com/', query, (actualResult) => {
+      expect(actualResult.getOk.error.length).to.not.equal(0);
+      done();
+    });
+  });
 });
