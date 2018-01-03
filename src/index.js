@@ -1,48 +1,55 @@
-import fetch from "node-fetch";
+const fetch = require('node-fetch');
+
+const { checkUrl, checkQuery, checkCallback } = require('./validation');
 
 /**
- * Fetches data from REST-API.
+ * Fetch data from external REST-API.
  *
  * @param {string} resourceName Resource name, like: users, countries, etc.
- * @param {string} url Url to REST-API endpoint.
+ * @param {string} uri URI to REST-API endpoint (protocol + host + port + endpoint to resource).
  * @param {function} cb Callback function, which will receive data.
  */
-const fetchData = (resourceName, url, cb) => {
-  fetch(url)
+const fetchData = (resourceName, uri, cb) => {
+  fetch(uri)
     .then(res => res.json())
-    .then(json => cb({resourceName: resourceName, data: json}))
-  ;
+    .then(json => cb({ resourceName, data: json }))
+    .catch(err => cb({ resourceName, data: undefined, error: err.message }));
 };
 
 /**
- * Performs fetch data from different REST-API endpoints simultaneously.
+ * Get fetchData Promise.
  *
- * @param {string} host REST-API host name.
- * @param {object} query Query object which contains keys as resources names and values as REST-API endpoints.
- * @param {function} cb Callback function, which will receive array with all obtained data.
+ * @param {string} resourceName Resource name, like: users, countries, etc.
+ * @param {string} uri URI to REST-API endpoint (protocol + host + port + endpoint to resource).
+ *
+ * @returns {Promise} Promise for function fetchData.
  */
-export default (host, query, cb) => {
-  let promises = [];
+const getPromise = (resourceName, uri) => new Promise((resolve) => {
+  fetchData(resourceName, uri, data => resolve(data));
+});
 
-  // Each parameter contains endpoint URL, so will use it as part of target URL.
-  for (let resourceName in query) {
-    // Url to REST-Api endpoint.
-    let url = host + query[resourceName];
-    let p = new Promise(resolve => {
-      fetchData(resourceName, url, data => resolve(data));
-    }).catch(e => {
-      console.error(e);
-      return null;
+/**
+ * Perform fetch data from different REST API endpoints in one call.
+ *
+ * @param {string} url URL to external REST-API (protocol + host + port).
+ * @param {object} query Query object (map resource name to REST-API endpoint path).
+ * @param {function} cb Callback function, which will receive result data.
+ */
+module.exports = (url, query, cb) => {
+  checkUrl(url);
+  checkQuery(query);
+  checkCallback(cb);
+
+  const promises =
+    Object.keys(query).map(resourceName => getPromise(resourceName, url + query[resourceName]));
+
+  Promise.all(promises).then((data) => {
+    const result = {};
+    // Format data from array into object,
+    // where key - is resource name, and value - data received from REST-API.
+    data.forEach((el) => {
+      result[el.resourceName] = { data: el.data, error: el.error };
     });
-    promises.push(p);
-  }
-
-  Promise.all(promises).then(data => {
-    let result = {};
-    // Format data into object,
-    // where key - is resource name, and value - data obtained from REST-API.
-    data.forEach(el => result[el.resourceName] = el.data);
     cb(result);
   });
-
 };

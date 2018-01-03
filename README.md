@@ -9,18 +9,21 @@ GetThemAll
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/372769a4866f43b49b4c8d98b8c03560)](https://www.codacy.com/app/cn007b/getthemall)
 
 A small library built for demo purposes,
-which helps fetch data from different REST API endpoints into one request.
+<br>which helps fetch data from different REST API endpoints in one call.
 
 ## Installation
 
-`npm install getthemall`
+`npm i getthemall`
 
 ## Usage
 
 ````js
-import getthemall from "../index"
+const getThemAll = require('getthemall');
 
-getthemall("https://your-api-host.com/", {user1: "users/1"}, data => res.json(data))
+getThemAll('https://your-api-host.com/', { user1: 'users/1', user2: 'users/2' }, (data) => {
+  // Now you have all your data for different resources from different endpoints.
+  console.log(data.user1, data.user2);
+});
 ````
 
 ## Tests
