@@ -36,7 +36,13 @@ describe('#getthemall - validation unit tests.', async () => {
       }).to.throw('Query cannot be NULL, Query must be an object.');
     });
 
-    it('Null as query', () => {
+    it('Undefined as query', () => {
+      expect(() => {
+        validation.checkQuery(undefined);
+      }).to.throw('Query must be an object.');
+    });
+
+    it('Empty object as query', () => {
       expect(() => {
         validation.checkQuery({});
       }).to.throw('Query object must have at least one property.');
