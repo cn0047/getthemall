@@ -5,15 +5,9 @@
   "author": "Vladimir Kovpak",
   "description": "Super simple package built for demo purposes.",
   "keywords": [
-    "nodejs",
-    "javascript",
-    "rest-api",
-    "json",
-    "node-fetch",
-    "mocha",
-    "chai",
-    "nock",
-    "ecmascript6"
+    "batch fetch",
+    "multi fetch",
+    "multi request"
   ],
   "homepage": "https://github.com/cn007b/getthemall#readme",
   "bugs": {
