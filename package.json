@@ -35,14 +35,14 @@
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-mocha": "^5.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.0",
     "nock": "^9.0.13",
-    "npm-check-updates": "^2.14.0"
+    "npm-check-updates": "^2.14.1"
   },
   "dependencies": {
-    "node-fetch": "^1.7.1",
+    "node-fetch": "^2.1.2",
     "valid-url": "^1.0.9"
   },
   "eslintConfig": {
