@@ -2,7 +2,7 @@
   "name": "getthemall",
   "license": "MIT",
   "version": "3.0.3",
-  "author": "Vladimir Kovpak",
+  "author": "Vladimir Kovpak <cn007b@gmail.com>",
   "description": "Super simple package built for demo purposes.",
   "keywords": [
     "batch fetch",
