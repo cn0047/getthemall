@@ -5,7 +5,6 @@ GetThemAll
 
 [![Build Status](https://travis-ci.org/cn007b/getthemall.svg?branch=master)](https://travis-ci.org/cn007b/getthemall)
 [![Coverage Status](https://coveralls.io/repos/github/cn007b/getthemall/badge.svg?branch=master)](https://coveralls.io/github/cn007b/getthemall?branch=master)
-[![bitHound Dependencies](https://www.bithound.io/github/cn007b/getthemall/badges/dependencies.svg)](https://www.bithound.io/github/cn007b/getthemall/master/dependencies/npm)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/372769a4866f43b49b4c8d98b8c03560)](https://www.codacy.com/app/cn007b/getthemall)
 
 A small library built for demo purposes,
